@@ -95,13 +95,15 @@ Claude HUD gives you better insights into what's happening in your Claude Code s
 
 ## What You See
 
-### Default (2 lines)
+### Default (2–3 lines)
 ```
 [Opus] │ my-project git:(main*)
 Context █████░░░░░ 45% │ Usage ██░░░░░░░░ 25% (1h 30m / 5h)
+Cache hit 80.0%
 ```
 - **Line 1** — Model, provider label when positively identified (for example `Bedrock`, `Vertex`, `MiniMax`), project path, git branch
 - **Line 2** — Context bar (green → yellow → red) and usage rate limits
+- **Line 3** — This fork: session cache-hit rate once the transcript has cacheable input (`display.showCacheHitRate`, default on). Hidden until then. `/claude-hud:configure` Minimal turns it off.
 
 ### Optional lines (enable via `/claude-hud:configure`)
 ```

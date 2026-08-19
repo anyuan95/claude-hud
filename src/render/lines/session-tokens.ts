@@ -53,7 +53,7 @@ export function renderSessionTokensLine(ctx: RenderContext): string | null {
 
 export function renderCacheHitLine(ctx: RenderContext): string | null {
   const display = ctx.config?.display;
-  if (display?.showCacheHitRate === false) {
+  if (display?.showCacheHitRate !== true) {
     return null;
   }
 

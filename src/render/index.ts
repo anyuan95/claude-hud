@@ -612,11 +612,9 @@ export function render(ctx: RenderContext): void {
       }
     }
 
-    if (ctx.config?.display?.showCacheHitRate) {
-      const cacheHitLine = renderCacheHitLine(ctx);
-      if (cacheHitLine) {
-        lines.push(cacheHitLine);
-      }
+    const cacheHitLine = renderCacheHitLine(ctx);
+    if (cacheHitLine) {
+      lines.push(cacheHitLine);
     }
 
     // Compaction count (opt-in, hidden until the first compaction)

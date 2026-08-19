@@ -267,7 +267,7 @@ If user chooses "Remove", set `display.customLine` to `""` in config.
 - Git: ON (with dirty indicator)
 - Jujutsu: OFF
 
-**Minimal** (core only — this is the default):
+**Minimal** (core only — upstream's default preset; this fork still defaults `showCacheHitRate` to true until a preset is applied):
 - Activity: Tools OFF, Agents OFF, Todos OFF
 - Info: Counts OFF, Tokens OFF, Usage OFF, Duration OFF, Session Name OFF, Session Tokens OFF, Cache Hit Rate OFF
 - Git: ON (with dirty indicator)
@@ -352,6 +352,7 @@ If user chooses "Remove", set `display.customLine` to `""` in config.
 **Defaults to ON (configurable booleans, kept enabled by the guided flow):**
 - `display.showModel` (default `true`)
 - `display.showContextBar` (default `true`)
+- `display.showCacheHitRate` (default `true` in this fork; Minimal/Essential presets turn it off)
 
 ---
 

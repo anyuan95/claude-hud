@@ -37,7 +37,7 @@ export function renderSessionTokensLine(ctx) {
 }
 export function renderCacheHitLine(ctx) {
     const display = ctx.config?.display;
-    if (display?.showCacheHitRate === false) {
+    if (display?.showCacheHitRate !== true) {
         return null;
     }
     const tokens = ctx.transcript.sessionTokens;

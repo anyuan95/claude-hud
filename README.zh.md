@@ -95,13 +95,15 @@ Claude HUD 让你在 Claude Code 会话中获得更清晰的洞察。
 
 ## 显示效果
 
-### 默认（2 行）
+### 默认（2–3 行）
 ```
 [Opus] │ my-project git:(main*)
 上下文 █████░░░░░ 45% │ 使用率 ██░░░░░░░░ 25%（1小时30分 / 5小时）
+缓存命中 80.0%
 ```
 - **第 1 行** — 模型、提供商标签（如能正面识别，例如 `Bedrock`、`Vertex`、`MiniMax`）、项目路径、git 分支
 - **第 2 行** — 上下文进度条（绿 → 黄 → 红）和使用率限制
+- **第 3 行** — 本 fork：transcript 有可缓存输入后显示会话缓存命中率（`display.showCacheHitRate`，默认开）。在此之前隐藏。`/claude-hud:configure` 选 Minimal 会关掉。
 
 ### 可选行（通过 `/claude-hud:configure` 启用）
 ```

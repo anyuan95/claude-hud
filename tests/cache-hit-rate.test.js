@@ -3,11 +3,25 @@ import assert from 'node:assert/strict';
 import { mergeConfig, DEFAULT_CONFIG } from '../dist/config.js';
 import { setLanguage, t } from '../dist/i18n/index.js';
 import { formatCacheHitPercent, renderCacheHitLine } from '../dist/render/lines/session-tokens.js';
+import { render } from '../dist/render/index.js';
+import { renderSessionLine } from '../dist/render/session-line.js';
 
 function stripAnsi(str) {
   return str
     .replace(/\x1b\[[0-9;]*m/g, '')
     .replace(/\x1b\][^\x07\x1b]*(?:\x07|\x1b\\)/g, '');
+}
+
+function captureRenderLines(ctx) {
+  const logs = [];
+  const originalLog = console.log;
+  console.log = (line) => logs.push(stripAnsi(String(line)));
+  try {
+    render(ctx);
+  } finally {
+    console.log = originalLog;
+  }
+  return logs;
 }
 
 function baseContext() {
@@ -125,9 +139,52 @@ test('renderCacheHitLine renders the session cache hit percent', () => {
 
 test('renderCacheHitLine uses Chinese label when language is zh', () => {
   setLanguage('zh');
-  assert.equal(t('label.cacheHit'), '缓存命中');
-  const line = stripAnsi(renderCacheHitLine(baseContext()) ?? '');
-  assert.ok(line.includes('缓存命中'));
-  assert.ok(line.includes('80.0%'));
+  try {
+    assert.equal(t('label.cacheHit'), '缓存命中');
+    const line = stripAnsi(renderCacheHitLine(baseContext()) ?? '');
+    assert.ok(line.includes('缓存命中'));
+    assert.ok(line.includes('80.0%'));
+  } finally {
+    setLanguage('en');
+  }
+});
+
+test('expanded render includes cache hit with default mergeConfig', () => {
   setLanguage('en');
+  const ctx = baseContext();
+  ctx.config = mergeConfig({
+    lineLayout: 'expanded',
+    display: { showUsage: false },
+  });
+  const output = captureRenderLines(ctx).join('\n');
+  assert.ok(output.includes('Cache hit 80.0%'), `missing cache hit in expanded output: ${output}`);
+});
+
+test('compact session line includes cache hit when enabled', () => {
+  setLanguage('en');
+  const ctx = baseContext();
+  ctx.config = mergeConfig({
+    lineLayout: 'compact',
+    display: { showCacheHitRate: true, showUsage: false },
+  });
+  const line = stripAnsi(renderSessionLine(ctx));
+  assert.ok(line.includes('Cache hit 80.0%'), `missing cache hit in compact line: ${line}`);
+});
+
+test('expanded and compact hide cache hit when showCacheHitRate is false', () => {
+  setLanguage('en');
+  const ctx = baseContext();
+  ctx.config = mergeConfig({
+    lineLayout: 'expanded',
+    display: { showCacheHitRate: false, showUsage: false },
+  });
+  const expanded = captureRenderLines(ctx).join('\n');
+  assert.ok(!expanded.includes('Cache hit'), `unexpected cache hit in expanded output: ${expanded}`);
+
+  ctx.config = mergeConfig({
+    lineLayout: 'compact',
+    display: { showCacheHitRate: false, showUsage: false },
+  });
+  const compact = stripAnsi(renderSessionLine(ctx));
+  assert.ok(!compact.includes('Cache hit'), `unexpected cache hit in compact line: ${compact}`);
 });

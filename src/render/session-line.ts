@@ -331,11 +331,9 @@ export function renderSessionLine(ctx: RenderContext): string {
     }
   }
 
-  if (display?.showCacheHitRate && ctx.transcript.sessionTokens) {
-    const cacheHitLine = renderCacheHitLine(ctx);
-    if (cacheHitLine) {
-      push(cacheHitLine);
-    }
+  const cacheHitLine = renderCacheHitLine(ctx);
+  if (cacheHitLine) {
+    push(cacheHitLine);
   }
 
   // Compaction count from transcript compact_boundary entries (opt-in,
