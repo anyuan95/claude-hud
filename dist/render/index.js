@@ -4,7 +4,7 @@ import { renderToolsLine } from './tools-line.js';
 import { renderSkillsLine, renderMcpLine } from './skills-mcp-line.js';
 import { renderAgentsLine } from './agents-line.js';
 import { renderTodosLine } from './todos-line.js';
-import { renderIdentityLine, renderProjectLine, renderAddedDirsLine, renderGitFilesLine, renderEnvironmentLine, renderPromptCacheLine, renderUsageLine, renderMemoryLine, renderSessionTokensLine, renderCompactionsLine, renderSessionTimeLine, } from './lines/index.js';
+import { renderIdentityLine, renderProjectLine, renderAddedDirsLine, renderGitFilesLine, renderEnvironmentLine, renderPromptCacheLine, renderUsageLine, renderMemoryLine, renderSessionTokensLine, renderCacheHitLine, renderCompactionsLine, renderSessionTimeLine, } from './lines/index.js';
 import { dim, RESET } from './colors.js';
 import { getTerminalWidth, UNKNOWN_TERMINAL_WIDTH } from '../utils/terminal.js';
 import { codePointCellWidth, isCjkAmbiguousWide } from './width.js';
@@ -493,6 +493,10 @@ export function render(ctx) {
             if (sessionTokensLine) {
                 lines.push(sessionTokensLine);
             }
+        }
+        const cacheHitLine = renderCacheHitLine(ctx);
+        if (cacheHitLine) {
+            lines.push(cacheHitLine);
         }
         // Compaction count (opt-in, hidden until the first compaction)
         const compactionsLine = renderCompactionsLine(ctx);

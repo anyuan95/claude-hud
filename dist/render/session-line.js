@@ -13,7 +13,7 @@ import { formatTokens, formatContextValue } from '../utils/format.js';
 import { formatAuthSegment } from '../auth.js';
 import { createDebug } from '../debug.js';
 import { formatModelDisplay } from './model-display.js';
-import { formatSessionTokenSummary } from './lines/session-tokens.js';
+import { formatSessionTokenSummary, renderCacheHitLine } from './lines/session-tokens.js';
 import { formatProjectPath } from './project-path.js';
 import { DEFAULT_PROJECT_LINE_ORDER } from '../config.js';
 import { orderFirstLineParts } from './first-line-order.js';
@@ -299,6 +299,10 @@ export function renderSessionLine(ctx) {
         if (summary) {
             push(label(summary, colors));
         }
+    }
+    const cacheHitLine = renderCacheHitLine(ctx);
+    if (cacheHitLine) {
+        push(cacheHitLine);
     }
     // Compaction count from transcript compact_boundary entries (opt-in,
     // hidden until the first compaction)

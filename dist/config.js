@@ -103,6 +103,7 @@ export const DEFAULT_CONFIG = {
         showPromptCache: false,
         promptCacheTtlSeconds: 300,
         showSessionTokens: false,
+        showCacheHitRate: true,
         showOutputStyle: false,
         showSessionStartDate: false,
         showLastResponseAt: false,
@@ -564,6 +565,9 @@ export function mergeConfig(userConfig) {
         showSessionTokens: typeof migrated.display?.showSessionTokens === 'boolean'
             ? migrated.display.showSessionTokens
             : DEFAULT_CONFIG.display.showSessionTokens,
+        showCacheHitRate: typeof migrated.display?.showCacheHitRate === 'boolean'
+            ? migrated.display.showCacheHitRate
+            : DEFAULT_CONFIG.display.showCacheHitRate,
         showOutputStyle: typeof migrated.display?.showOutputStyle === 'boolean'
             ? migrated.display.showOutputStyle
             : DEFAULT_CONFIG.display.showOutputStyle,

@@ -16,6 +16,7 @@ import {
   renderUsageLine,
   renderMemoryLine,
   renderSessionTokensLine,
+  renderCacheHitLine,
   renderCompactionsLine,
   renderSessionTimeLine,
 } from './lines/index.js';
@@ -609,6 +610,11 @@ export function render(ctx: RenderContext): void {
       if (sessionTokensLine) {
         lines.push(sessionTokensLine);
       }
+    }
+
+    const cacheHitLine = renderCacheHitLine(ctx);
+    if (cacheHitLine) {
+      lines.push(cacheHitLine);
     }
 
     // Compaction count (opt-in, hidden until the first compaction)
