@@ -102,15 +102,13 @@ Claude HUD 让你在 Claude Code 会话中获得更清晰的洞察。
 
 ## 显示效果
 
-### 默认（2–3 行）
+### 默认（2 行）
 ```
 [Opus] │ my-project git:(main*)
-上下文 █████░░░░░ 45% │ 使用率 ██░░░░░░░░ 25%（1小时30分 / 5小时）
-缓存命中 80.0%
+上下文 █████░░░░░ 45% │ 用量 ██░░░░░░░░ 25%（1小时30分 / 5小时） │ 缓存命中 80.0%
 ```
 - **第 1 行** — 模型、提供商标签（如能正面识别，例如 `Bedrock`、`Vertex`、`MiniMax`）、项目路径、git 分支
-- **第 2 行** — 上下文进度条（绿 → 黄 → 红）和使用率限制
-- **第 3 行** — 本 fork：transcript 有可缓存输入后显示会话缓存命中率（`display.showCacheHitRate`，默认开）。在此之前隐藏。`/claude-hud:configure` 选 Minimal 会关掉。
+- **第 2 行** — 上下文进度条（绿 → 黄 → 红）、使用率限制，以及本 fork 的会话缓存命中率（transcript 有可缓存输入后显示，`display.showCacheHitRate`，默认开）。在此之前隐藏。`/claude-hud:configure` 选 Minimal 会关掉。
 
 ### 可选行（通过 `/claude-hud:configure` 启用）
 ```
@@ -230,7 +228,7 @@ Claude Code → stdin JSON → claude-hud → stdout → 在终端中显示
 | `display.showClaudeCodeVersion` | boolean | false | 显示已安装的 Claude Code 版本，如 `CC v2.1.81` |
 | `display.showMemoryUsage` | boolean | false | 在展开布局中显示近似系统 RAM 使用行 |
 | `display.showPromptCache` | boolean | false | 显示 prompt cache 的过期时刻，数据来自 transcript |
-| `display.showCacheHitRate` | boolean | true | 显示本会话累计的 prompt cache 命中率（`cache_read / (input + cache_creation + cache_read)`），例如 `缓存命中 80.0%` |
+| `display.showCacheHitRate` | boolean | true | 显示本会话累计的 prompt cache 命中率（`cache_read / (input + cache_creation + cache_read)`），例如 `缓存命中 80.0%`。展开布局内联在上下文行；没有上下文行时单独成行 |
 | `display.promptCacheTtlSeconds` | number | `300` | 仅当 transcript 尚未报告 5 分钟或 1 小时缓存层级时使用的兼容回退值 |
 | `colors.context` | 颜色值 | `green` | 上下文进度条和百分比的基础颜色 |
 | `colors.usage` | 颜色值 | `brightBlue` | 使用率进度条和低于警告阈值时百分比的颜色 |

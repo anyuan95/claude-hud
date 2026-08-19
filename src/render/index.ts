@@ -437,8 +437,11 @@ function renderElementLine(
       return renderProjectLine(ctx);
     case 'addedDirs':
       return renderAddedDirsLine(ctx);
-    case 'context':
-      return renderIdentityLine(ctx, labelOptions);
+    case 'context': {
+      const identity = renderIdentityLine(ctx, labelOptions);
+      const cacheHitLine = renderCacheHitLine(ctx);
+      return cacheHitLine ? `${identity} │ ${cacheHitLine}` : identity;
+    }
     case 'usage':
       return renderUsageLine(ctx, labelOptions);
     case 'promptCache':
@@ -612,9 +615,12 @@ export function render(ctx: RenderContext): void {
       }
     }
 
-    const cacheHitLine = renderCacheHitLine(ctx);
-    if (cacheHitLine) {
-      lines.push(cacheHitLine);
+    const contextInOrder = (ctx.config?.elementOrder ?? DEFAULT_ELEMENT_ORDER).includes('context');
+    if (!contextInOrder) {
+      const cacheHitLine = renderCacheHitLine(ctx);
+      if (cacheHitLine) {
+        lines.push(cacheHitLine);
+      }
     }
 
     // Compaction count (opt-in, hidden until the first compaction)

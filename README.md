@@ -102,15 +102,13 @@ Claude HUD gives you better insights into what's happening in your Claude Code s
 
 ## What You See
 
-### Default (2–3 lines)
+### Default (2 lines)
 ```
 [Opus] │ my-project git:(main*)
-Context █████░░░░░ 45% │ Usage ██░░░░░░░░ 25% (1h 30m / 5h)
-Cache hit 80.0%
+Context █████░░░░░ 45% │ Usage ██░░░░░░░░ 25% (1h 30m / 5h) │ Cache hit 80.0%
 ```
 - **Line 1** — Model, provider label when positively identified (for example `Bedrock`, `Vertex`, `MiniMax`), project path, git branch
-- **Line 2** — Context bar (green → yellow → red) and usage rate limits
-- **Line 3** — This fork: session cache-hit rate once the transcript has cacheable input (`display.showCacheHitRate`, default on). Hidden until then. `/claude-hud:configure` Minimal turns it off.
+- **Line 2** — Context bar (green → yellow → red), usage rate limits, and this fork's session cache-hit rate once the transcript has cacheable input (`display.showCacheHitRate`, default on). Hidden until then. `/claude-hud:configure` Minimal turns it off.
 
 ### Optional lines (enable via `/claude-hud:configure`)
 ```
@@ -255,7 +253,7 @@ Simplified and Traditional Chinese HUD labels are available as explicit opt-ins.
 | `display.showClaudeCodeVersion` | boolean | false | Show the installed Claude Code version, e.g. `CC v2.1.81` |
 | `display.showMemoryUsage` | boolean | false | Show an approximate system RAM usage line in expanded layout |
 | `display.showPromptCache` | boolean | false | Show the wall-clock time the session's prompt cache expires, read from the transcript |
-| `display.showCacheHitRate` | boolean | true | Show the session-cumulative prompt-cache hit rate from transcript usage (`cache_read / (input + cache_creation + cache_read)`), e.g. `Cache hit 80.0%` |
+| `display.showCacheHitRate` | boolean | true | Show the session-cumulative prompt-cache hit rate from transcript usage (`cache_read / (input + cache_creation + cache_read)`), e.g. `Cache hit 80.0%`. Expanded layout inlines it on the Context line; if Context is omitted it stays on its own line |
 | `display.promptCacheTtlSeconds` | number | `300` | Compatibility fallback used only when the transcript has not reported a 5-minute or 1-hour cache tier |
 | `colors.context` | color value | `green` | Base color for the context bar and context percentage |
 | `colors.usage` | color value | `brightBlue` | Base color for usage bars and percentages below warning thresholds |
