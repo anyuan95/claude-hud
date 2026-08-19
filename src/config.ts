@@ -233,6 +233,9 @@ export interface HudConfig {
     // real 5-minute or 1-hour cache write to follow.
     promptCacheTtlSeconds: number;
     showSessionTokens: boolean;
+    // Session-cumulative prompt-cache hit rate from transcript usage:
+    // cache_read / (input + cache_creation + cache_read).
+    showCacheHitRate: boolean;
     showOutputStyle: boolean;
     showSessionStartDate: boolean;
     showLastResponseAt: boolean;
@@ -347,6 +350,7 @@ export const DEFAULT_CONFIG: HudConfig = {
     showPromptCache: false,
     promptCacheTtlSeconds: 300,
     showSessionTokens: false,
+    showCacheHitRate: true,
     showOutputStyle: false,
     showSessionStartDate: false,
     showLastResponseAt: false,
@@ -881,6 +885,9 @@ export function mergeConfig(userConfig: Partial<HudConfig>): HudConfig {
     showSessionTokens: typeof migrated.display?.showSessionTokens === 'boolean'
       ? migrated.display.showSessionTokens
       : DEFAULT_CONFIG.display.showSessionTokens,
+    showCacheHitRate: typeof migrated.display?.showCacheHitRate === 'boolean'
+      ? migrated.display.showCacheHitRate
+      : DEFAULT_CONFIG.display.showCacheHitRate,
     showOutputStyle: typeof migrated.display?.showOutputStyle === 'boolean'
       ? migrated.display.showOutputStyle
       : DEFAULT_CONFIG.display.showOutputStyle,

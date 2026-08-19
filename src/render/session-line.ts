@@ -15,7 +15,7 @@ import { formatTokens, formatContextValue } from '../utils/format.js';
 import { formatAuthSegment } from '../auth.js';
 import { createDebug } from '../debug.js';
 import { formatModelDisplay } from './model-display.js';
-import { formatSessionTokenSummary } from './lines/session-tokens.js';
+import { formatSessionTokenSummary, renderCacheHitLine } from './lines/session-tokens.js';
 import { formatProjectPath } from './project-path.js';
 import { DEFAULT_PROJECT_LINE_ORDER } from '../config.js';
 import type { FirstLineSegment } from '../config.js';
@@ -328,6 +328,13 @@ export function renderSessionLine(ctx: RenderContext): string {
     const summary = formatSessionTokenSummary(ctx.transcript.sessionTokens, `${t('format.tok')}:`);
     if (summary) {
       push(label(summary, colors));
+    }
+  }
+
+  if (display?.showCacheHitRate && ctx.transcript.sessionTokens) {
+    const cacheHitLine = renderCacheHitLine(ctx);
+    if (cacheHitLine) {
+      push(cacheHitLine);
     }
   }
 

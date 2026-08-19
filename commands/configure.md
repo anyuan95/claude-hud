@@ -101,6 +101,7 @@ Save as `language: "en"`, `language: "zh-Hans"`, or `language: "zh-Hant"`.
   - "Session duration" - ⏱️ 5m
   - "Session name" - fix-auth-bug (session slug or custom title)
   - "Session tokens" - Tokens 12.8M (in: 7k, out: 28k, cache: 12.8M)
+  - "Cache hit rate" - Cache hit 80.0%
   - "Reasoning level" - ◑ high (low/medium/high/xhigh/max, or ultracode(xhigh))
   - "Output style" - style: explanatory (current output style name)
   - "Session cost" - 💰 $0.42
@@ -151,6 +152,7 @@ If user chooses "Enter custom text", use AskUserQuestion to get their text. Save
   - "Jujutsu status" - jj:(bookmark*) opt-in indicator
   - "Session name" - fix-auth-bug (session slug or custom title)
   - "Session tokens" - Tokens 12.8M (in: 7k, out: 28k, cache: 12.8M)
+  - "Cache hit rate" - Cache hit 80.0%
   - "Reasoning level" - ◑ high (low/medium/high/xhigh/max, or ultracode(xhigh))
   - "Output style" - style: explanatory (current output style name)
   - "Session cost" - 💰 $0.42
@@ -185,6 +187,7 @@ Info items (Counts, Tokens, Usage, Speed, Duration) can be turned off via "Reset
   - "Jujutsu status" - jj:(bookmark*) opt-in indicator
   - "Session name" - fix-auth-bug (session slug or custom title)
   - "Session tokens" - Tokens 12.8M (in: 7k, out: 28k, cache: 12.8M)
+  - "Cache hit rate" - Cache hit 80.0%
   - "Session duration" - ⏱️ 5m
   - "Reasoning level" - ◑ high (low/medium/high/xhigh/max, or ultracode(xhigh))
   - "Output style" - style: explanatory (current output style name)
@@ -254,19 +257,19 @@ If user chooses "Remove", set `display.customLine` to `""` in config.
 
 **Full** (everything ON):
 - Activity: Tools ON, Skills ON, MCP ON, Agents ON, Todos ON
-- Info: Added Dirs ON, Counts ON, Tokens ON, Usage ON, Reset Label ON, Cost ON, Duration ON, Session Name ON, Session Tokens ON, Reasoning Level ON, Output Style ON, Memory ON, Prompt Cache ON, CC Version ON, Compactions ON, Advisor ON
+- Info: Added Dirs ON, Counts ON, Tokens ON, Usage ON, Reset Label ON, Cost ON, Duration ON, Session Name ON, Session Tokens ON, Cache Hit Rate ON, Reasoning Level ON, Output Style ON, Memory ON, Prompt Cache ON, CC Version ON, Compactions ON, Advisor ON
 - Git: ON (with dirty indicator, no ahead/behind)
 - Jujutsu: ON (opted in, with dirty and conflict indicators)
 
 **Essential** (activity + git):
 - Activity: Tools ON, Agents ON, Todos ON
-- Info: Counts OFF, Tokens OFF, Usage OFF, Duration ON, Session Name OFF, Session Tokens OFF
+- Info: Counts OFF, Tokens OFF, Usage OFF, Duration ON, Session Name OFF, Session Tokens OFF, Cache Hit Rate OFF
 - Git: ON (with dirty indicator)
 - Jujutsu: OFF
 
 **Minimal** (core only — this is the default):
 - Activity: Tools OFF, Agents OFF, Todos OFF
-- Info: Counts OFF, Tokens OFF, Usage OFF, Duration OFF, Session Name OFF, Session Tokens OFF
+- Info: Counts OFF, Tokens OFF, Usage OFF, Duration OFF, Session Name OFF, Session Tokens OFF, Cache Hit Rate OFF
 - Git: ON (with dirty indicator)
 - Jujutsu: OFF
 
@@ -333,6 +336,7 @@ If user chooses "Remove", set `display.customLine` to `""` in config.
 | Auth user | `display.showAuthUser` (login account, truncated to `display.authUserLength` chars, 0 = full) |
 | Session duration | `display.showDuration` |
 | Session tokens | `display.showSessionTokens` |
+| Cache hit rate | `display.showCacheHitRate` |
 | Session start date | `display.showSessionStartDate` |
 | Last response time | `display.showLastResponseAt` |
 | Compaction count | `display.showCompactions` |

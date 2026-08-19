@@ -16,6 +16,7 @@ import {
   renderUsageLine,
   renderMemoryLine,
   renderSessionTokensLine,
+  renderCacheHitLine,
   renderCompactionsLine,
   renderSessionTimeLine,
 } from './lines/index.js';
@@ -608,6 +609,13 @@ export function render(ctx: RenderContext): void {
       const sessionTokensLine = renderSessionTokensLine(ctx);
       if (sessionTokensLine) {
         lines.push(sessionTokensLine);
+      }
+    }
+
+    if (ctx.config?.display?.showCacheHitRate) {
+      const cacheHitLine = renderCacheHitLine(ctx);
+      if (cacheHitLine) {
+        lines.push(cacheHitLine);
       }
     }
 
