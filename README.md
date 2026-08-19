@@ -13,11 +13,18 @@ A Claude Code plugin that shows what's happening — context usage, active tools
 
 ## Install
 
+This fork is installed from [anyuan95/claude-hud](https://github.com/anyuan95/claude-hud), not the upstream marketplace. If you already have the official `claude-hud` plugin, remove it first — both marketplaces use the same plugin name:
+
+```
+/plugin uninstall claude-hud@claude-hud
+/plugin marketplace remove claude-hud
+```
+
 Inside a Claude Code instance, run the following commands:
 
 **Step 1: Add the marketplace**
 ```
-/plugin marketplace add jarrodwatts/claude-hud
+/plugin marketplace add anyuan95/claude-hud
 ```
 
 **Step 2: Install the plugin**
@@ -54,7 +61,7 @@ After that, reload plugins (no restart needed):
 
 Steps 1–2 can also be done outside a session with the Claude Code CLI:
 ```bash
-claude plugin marketplace add jarrodwatts/claude-hud
+claude plugin marketplace add anyuan95/claude-hud
 claude plugin install claude-hud@claude-hud
 ```
 Then run `/reload-plugins` inside your session (or start a new one).
@@ -527,7 +534,7 @@ Leaving it unset (or setting an explicit negative: `0`, `false`, `off`, `no`) ke
 ## Development
 
 ```bash
-git clone https://github.com/jarrodwatts/claude-hud
+git clone https://github.com/anyuan95/claude-hud.git
 cd claude-hud
 npm ci && npm run build
 npm test

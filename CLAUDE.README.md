@@ -8,7 +8,7 @@ Real-time statusline showing context usage, active tools, running agents, and to
 
 **Step 1: Add the marketplace**
 ```
-/plugin marketplace add jarrodwatts/claude-hud
+/plugin marketplace add anyuan95/claude-hud
 ```
 
 **Step 2: Install the plugin**
@@ -49,7 +49,7 @@ If not installed or outdated, direct user to https://claude.ai/code
 
 Run this command in Claude Code:
 ```
-/plugin marketplace add jarrodwatts/claude-hud
+/plugin marketplace add anyuan95/claude-hud
 ```
 
 ### Step 3: Install the Plugin
@@ -262,7 +262,7 @@ Technical documentation for agents who need to understand, modify, or debug Clau
 
 <development>
   <setup>
-    git clone https://github.com/jarrodwatts/claude-hud
+    git clone https://github.com/anyuan95/claude-hud.git
     cd claude-hud
     npm ci
     npm run build
@@ -307,7 +307,7 @@ Technical documentation for agents who need to understand, modify, or debug Clau
 <troubleshooting>
   <issue name="Statusline not appearing">
     <cause>Plugin not installed or statusLine not configured</cause>
-    <solution>Run: /plugin marketplace add jarrodwatts/claude-hud</solution>
+    <solution>Run: /plugin marketplace add anyuan95/claude-hud</solution>
     <solution>Run: /plugin install claude-hud</solution>
     <solution>Run: /claude-hud:setup</solution>
     <solution>Ensure Claude Code is v1.0.80 or later</solution>

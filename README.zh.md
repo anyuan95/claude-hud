@@ -13,11 +13,18 @@
 
 ## 安装
 
+本 fork 从 [anyuan95/claude-hud](https://github.com/anyuan95/claude-hud) 安装，不是上游 marketplace。如果已经装过官方 `claude-hud`，先卸掉——两边 marketplace 插件名相同：
+
+```
+/plugin uninstall claude-hud@claude-hud
+/plugin marketplace remove claude-hud
+```
+
 在 Claude Code 实例中，运行以下命令：
 
 **步骤 1：添加市场**
 ```
-/plugin marketplace add jarrodwatts/claude-hud
+/plugin marketplace add anyuan95/claude-hud
 ```
 
 **步骤 2：安装插件**
@@ -54,7 +61,7 @@ mkdir -p ~/.cache/tmp && TMPDIR=~/.cache/tmp claude
 
 步骤 1–2 也可以在会话之外用 Claude Code CLI 完成：
 ```bash
-claude plugin marketplace add jarrodwatts/claude-hud
+claude plugin marketplace add anyuan95/claude-hud
 claude plugin install claude-hud@claude-hud
 ```
 然后在会话内运行 `/reload-plugins`（或开启新会话）。
@@ -471,7 +478,7 @@ CLAUDE_HUD_DISABLE=1 claude
 ## 开发
 
 ```bash
-git clone https://github.com/jarrodwatts/claude-hud
+git clone https://github.com/anyuan95/claude-hud.git
 cd claude-hud
 npm ci && npm run build
 npm test
