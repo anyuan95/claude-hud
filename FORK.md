@@ -25,6 +25,7 @@ Feature work stays on a branch off `main`. After syncing `main`, rebase or merge
 | Area | Upstream | This fork |
 | --- | --- | --- |
 | Session cache-hit rate | Not shown. Transcript already has `input` / `cache_creation` / `cache_read` token totals. | New `display.showCacheHitRate` (default `true` with no config). Renders `Cache hit 80.0%` from `cache_read / (input + cache_creation + cache_read)`, inlined on the Context line. `/claude-hud:configure` Minimal/Essential turn it off. The number is a lifetime average over the whole transcript, including subagent usage. |
+| Versioning | Upstream `0.8.0` | This fork ships `0.8.1` and will keep bumping independently so `/plugin update` can see a newer `plugin.json` than the official plugin. Do not use a `-beta` suffix: Windows setup only accepts `digits.digits` folder names. |
 | Docs | Official README only | README banner + this file. Install commands point at this fork (`anyuan95/claude-hud`). |
 
 The formula matches the usual session-level token coverage used by other Claude Code statuslines. It is a lifetime average for the current transcript, not a last-request rate and not a cost discount.

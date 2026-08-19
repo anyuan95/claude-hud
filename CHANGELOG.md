@@ -4,6 +4,13 @@ All notable changes to Claude HUD will be documented in this file.
 
 ## [Unreleased]
 
+## [0.8.1] - 2026-08-19
+
+Fork release on [anyuan95/claude-hud](https://github.com/anyuan95/claude-hud). Version is independent of upstream `0.8.0` so Claude Code can offer an update.
+
+### Added
+- Session cache-hit rate (`display.showCacheHitRate`, default on), inlined on the Context line.
+
 ## [0.8.0] - 2026-08-18
 
 ### Added
